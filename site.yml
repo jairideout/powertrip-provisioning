@@ -1,0 +1,8 @@
+---
+
+- name: set up powertrip
+  hosts: servers
+  become: true
+  roles:
+    - nginx
+    - docker

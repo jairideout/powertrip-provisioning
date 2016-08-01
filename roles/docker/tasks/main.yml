@@ -1,0 +1,27 @@
+---
+
+- name: install deps
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+
+- name: add docker repo key
+  apt_key:
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    state: present
+
+- name: add apt entry
+  apt_repository:
+    repo: deb https://apt.dockerproject.org/repo ubuntu-xenial main
+    update_cache: yes
+    state: present
+
+- name: install docker
+  apt:
+    name: docker-engine
+  notify: start docker

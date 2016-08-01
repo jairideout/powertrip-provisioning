@@ -1,0 +1,31 @@
+---
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: remove default nginx configuration
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify:
+    - stop nginx
+    - start nginx
+
+- name: copy default nginx configuration
+  template:
+    src: main.conf
+    dest: /etc/nginx/sites-available/main.conf
+  notify:
+    - stop nginx
+    - start nginx
+
+- name: link nginx configuration
+  file:
+    src: /etc/nginx/sites-available/main.conf
+    dest: /etc/nginx/sites-enabled/main
+    state: link
+  notify:
+    - stop nginx
+    - start nginx
