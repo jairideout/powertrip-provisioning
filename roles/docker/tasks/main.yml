@@ -8,6 +8,8 @@
   with_items:
     - apt-transport-https
     - ca-certificates
+    - python-dev
+    - python-pip
 
 - name: add docker repo key
   apt_key:
@@ -25,3 +27,12 @@
   apt:
     name: docker-engine
   notify: start docker
+
+- name: upgrade pip, install docker-py and docker compose
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - pip
+    - docker-py
+    - docker-compose
