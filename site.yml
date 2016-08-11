@@ -4,6 +4,7 @@
   hosts: servers
   become: true
   roles:
+    - ssh
     - nginx
     - ufw
     - docker
