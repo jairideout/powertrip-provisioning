@@ -8,3 +8,4 @@
     - nginx
     - ufw
     - docker
+    - utilities

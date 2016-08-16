@@ -1,0 +1,11 @@
+---
+
+- name: install htop
+  apt:
+    name: htop
+    state: latest
+
+- name: install tmux
+  apt:
+    name: tmux
+    state: latest
