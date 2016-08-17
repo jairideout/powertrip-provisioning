@@ -1,0 +1,7 @@
+---
+
+- name: Add external port map for ssh
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: Port 2223
+    insertafter: "^Port 22$"

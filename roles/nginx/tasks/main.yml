@@ -29,3 +29,18 @@
   notify:
     - stop nginx
     - start nginx
+
+# Temporary hack until autobencher has it's own provisioning
+- name: copy benchmarks nginx configuration
+  template:
+    src: benchmarks.scikit-bio.org.conf
+    dest: /etc/nginx/sites-available/benchmarks.scikit-bio.org.conf
+
+- name: link benchmarks nginx configuration
+  file:
+    src: /etc/nginx/sites-available/benchmarks.scikit-bio.org.conf
+    dest: /etc/nginx/sites-enabled/benchmarks.scikit-bio.org
+    state: link
+  notify:
+    - stop nginx
+    - start nginx
