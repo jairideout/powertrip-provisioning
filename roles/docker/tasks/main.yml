@@ -26,13 +26,14 @@
 - name: install docker
   apt:
     name: docker-engine
+    state: latest
   notify: start docker
 
 - name: upgrade pip, install docker-py and docker compose
   pip:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - pip
-    - docker-py
-    - docker-compose
+    - docker-compose==1.9.0
+    - docker-py==1.10.6

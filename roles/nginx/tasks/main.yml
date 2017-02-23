@@ -13,6 +13,14 @@
     - stop nginx
     - start nginx
 
+- name: copy qiime2.org certs
+  copy:
+    src: "{{ cert_dir }}/{{ item }}"
+    dest: /etc/ssl
+  with_items:
+    - "*.qiime2.org.crt"
+    - "*.qiime2.org.key"
+
 - name: copy default nginx configuration
   template:
     src: main.conf
