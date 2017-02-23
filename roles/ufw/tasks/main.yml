@@ -8,8 +8,3 @@
   with_items:
     - OpenSSH
     - Nginx Full
-
-- name: ufw allow 2223
-  ufw:
-    rule: allow
-    port: 2223
